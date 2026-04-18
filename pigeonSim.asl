@@ -11,7 +11,9 @@ init
 update
 {
     if (vars.splitCooldown > 0)
-        vars.splitCooldown -= 1;
+    {
+        vars.splitCooldown--;
+    }
 }
 
 start
@@ -25,7 +27,10 @@ start
 
 split
 {
-    if (current.mapNumber > old.mapNumber && vars.splitCooldown == 0)
+    if (vars.splitCooldown > 0)
+        return false;
+
+    if (current.mapNumber > old.mapNumber)
     {
         vars.splitCooldown = 30;
         return true;
